@@ -14,7 +14,11 @@ Usage requires [registration](https://www.hamqth.com/register.php) with the HamQ
 
 ## References
 
-HamQTH Developer Documentation: [HamQTH | For application developers]
+- HamQTH Developer Documentation: [HamQTH | For application developers]
+- GitLab Repository: [GitLab Repository]
+- GitHub Repository: [GitHub Repository]
 
 [HamQTH]: https://www.hamqth.com
 [HamQTH | For application developers]: https://www.hamqth.com/developers.php
+[GitLab Repository]: https://gitlab.com/ryanbalfanz/python-hamqth
+[GitHub Repository]: https://github.com/RyanBalfanz/python-hamqth
