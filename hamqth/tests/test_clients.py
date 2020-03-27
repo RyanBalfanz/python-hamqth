@@ -42,7 +42,7 @@ class HamQTHClientRequestTestCase(TestCase):
     def setUpClass(cls):
         class OkResponse:
             ok = True
-        cls._ok_response = OkResponse
+        cls._response = OkResponse
 
     def setUp(self):
         self.client = HamQTHClient()
@@ -50,8 +50,32 @@ class HamQTHClientRequestTestCase(TestCase):
     def test_request(self):
         url = 'https://some-url.test/'
         payload = {'foo': 'bar'}
-        with patch.object(requests, 'get', return_value=self._ok_response()) as mock_method:
+        with patch.object(requests, 'get', return_value=self._response()) as mock_method:
             self.client.request(url, payload=payload)
+        mock_method.assert_called_once_with('https://some-url.test/', params='foo=bar')
+
+
+class HamQTHClientRequestNotOkTestCase(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        class RaisedError(Exception): pass
+        class NotOkResponse:
+            ok = False
+            def raise_for_status(self):
+                raise RaisedError("raise_for_status was called")
+        
+        cls._raised_error = RaisedError
+        cls._response = NotOkResponse
+
+    def setUp(self):
+        self.client = HamQTHClient()
+
+    def test_request_not_ok_raises(self):
+        url = 'https://some-url.test/'
+        payload = {'foo': 'bar'}
+        with patch.object(requests, 'get', return_value=self._response()) as mock_method:
+            with self.assertRaises(self._raised_error):
+                self.client.request(url, payload=payload)
         mock_method.assert_called_once_with('https://some-url.test/', params='foo=bar')
 
 
