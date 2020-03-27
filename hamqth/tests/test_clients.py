@@ -17,7 +17,34 @@ from .mock_responses import (
 )
 
 
-class HamQTHClientTestCase(TestCase):
+class HamQTHClientInitializationDefaultsTestCase(TestCase):
+    def setUp(self):
+        self.client = HamQTHClient()
+
+    def test_default_session_id_value(self):
+        self.assertEqual(self.client.session_id, None)
+
+    def test_default_program_name_value(self):
+        self.assertEqual(self.client.program_name, 'HamQTHClient')
+
+
+class HamQTHClientInitializeWithSessionIdTestCase(TestCase):
+    def setUp(self):
+        self.client = HamQTHClient(session_id='test-session-id')
+
+    def test_initialize_session_id_is_set(self):
+        self.assertEqual(self.client.session_id, 'test-session-id')
+
+
+class HamQTHClientInitializeWithProgramNameTestCase(TestCase):
+    def setUp(self):
+        self.client = HamQTHClient(program_name='test-program-name')
+
+    def test_initialize_program_name_is_set(self):
+        self.assertEqual(self.client.program_name, 'test-program-name')
+
+
+class HamQTHClientAuthenticateTestCase(TestCase):
     def setUp(self):
         self.client = HamQTHClient()
 
