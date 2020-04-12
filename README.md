@@ -46,5 +46,6 @@ These projects also target Python, but [others exist](https://github.com/search?
 [HamQTH | For application developers]: https://www.hamqth.com/developers.php
 [GitLab Repository]: https://gitlab.com/ryanbalfanz/python-hamqth
 [GitHub Repository]: https://github.com/RyanBalfanz/python-hamqth
+[PyPI Page]: https://pypi.org/project/hamqth/
 [sconklin/hamqthlib]: https://github.com/sconklin/hamqthlib
 [krisp/fauxqrz]: https://github.com/krisp/fauxqrz
