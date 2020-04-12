@@ -1,3 +1,3 @@
 from .clients import HamQTHClient
 
-__version__ = '0.1.2'
+__version__ = '0.1.3'
