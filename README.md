@@ -12,6 +12,23 @@ This library supports the [XML callbook search](https://www.hamqth.com/developer
 
 Usage requires [registration](https://www.hamqth.com/register.php) with the HamQTH service.
 
+## Installation
+
+Requests is also required, you made need to install it separately.
+
+```
+pip install hamqth
+```
+
+## Usage
+
+```
+>>> from hamqth import HamQTHClient
+>>> client = HamQTHClient()
+```
+
+Check out the code and tests for more detailed information.
+
 ## Related Projects
 
 These projects also target Python, but [others exist](https://github.com/search?q=hamqth) as well as probably more of which I am not aware.
