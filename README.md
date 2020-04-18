@@ -12,22 +12,24 @@ This library supports the [XML callbook search](https://www.hamqth.com/developer
 
 Usage requires [registration](https://www.hamqth.com/register.php) with the HamQTH service.
 
-## Installation
+## Installation and Usage
+
+For more detailed information check out the [Project Documentation] on GitHub Pages. Also check out the code and tests as the source of truth.
 
 Requests is also required, you made need to install it separately.
 
-```
+```shell
 pip install hamqth
 ```
 
-## Usage
-
-```
+```python
 >>> from hamqth import HamQTHClient
 >>> client = HamQTHClient()
+>>> client.authenticate('username', 'password')
+>>> client.search_callsign('callsign')
+…
+>>> client.logout()
 ```
-
-Check out the code and tests for more detailed information.
 
 ## Related Projects
 
@@ -38,14 +40,17 @@ These projects also target Python, but [others exist](https://github.com/search?
 
 ## References
 
-- HamQTH Developer Documentation: [HamQTH | For application developers]
+- HamQTH Website: [HamQTH]
+- HamQTH Developer Documentation: [HamQTH For application developers]
 - GitLab Repository: [GitLab Repository]
 - GitHub Repository: [GitHub Repository]
+- Project Documentation on GitHub Pages: [Project Documentation]
 
-[HamQTH]: https://www.hamqth.com
-[HamQTH | For application developers]: https://www.hamqth.com/developers.php
-[GitLab Repository]: https://gitlab.com/ryanbalfanz/python-hamqth
 [GitHub Repository]: https://github.com/RyanBalfanz/python-hamqth
+[GitLab Repository]: https://gitlab.com/ryanbalfanz/python-hamqth
+[HamQTH For application developers]: https://www.hamqth.com/developers.php
+[HamQTH]: https://www.hamqth.com
+[krisp/fauxqrz]: https://github.com/krisp/fauxqrz
+[Project Documentation]: https://ryanbalfanz.github.io/python-hamqth/
 [PyPI Page]: https://pypi.org/project/hamqth/
 [sconklin/hamqthlib]: https://github.com/sconklin/hamqthlib
-[krisp/fauxqrz]: https://github.com/krisp/fauxqrz

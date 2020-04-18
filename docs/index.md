@@ -1,22 +1,24 @@
 ---
 layout: default
-title: Python-HamQTH
+title: Documentation
 ---
 
-# Python-HamQTH
+HamQTH provides a simple interface for application developers.
+
+`Python-HamQTH` provides a simple interface to querying the HamQTH XML callbook service.
 
 ## Installation
 
-Installing is easy with Pip.
+###  Install with Pip
 
-```
-pip install python-hamqth
+```shell
+pip install hamqth
 ```
 
-Or, similarly easy with Pipenv.
+### Install with Pipenv
 
-```
-pipenv install python-hamqth
+```shell
+pipenv install hamqth
 ```
 
 ## Usage
@@ -25,25 +27,25 @@ pipenv install python-hamqth
 
 #### Instantiate a new client
 
-```
+```python
 >>> client = HamQTHClient()
 ```
 
 If you have a session-id you can use it.
 
-```
+```python
 >>> client = HamQTHClient(session_id='your-session-id')
 ```
 
 #### Authenticate your client instance
 
-```
+```python
 >>> client.authenticate('username', 'password')
 ```
 
 Check if your client is authenticated.
 
-```
+```python
 >>> client.is_authenticated
 True
 ```
@@ -52,7 +54,7 @@ True
 
 ##### Logout
 
-```
+```python
 >>> client.logout()
 >>> client.is_authenticated
 False
@@ -66,18 +68,18 @@ These methods require authentication. If the client is not authenticated, or if 
 
 ##### Search callsign data
 
-```
+```python
 >>> client.search_callsign('callsign')
 ```
 
 ##### Search callsign data with bio
 
-```
+```python
 >>> client.search_callsign_bio('callsign')
 ```
 
 ##### Search callsign data with recent activity
 
-```
+```python
 >>> client.search_callsign_recent_activity('callsign')
 ```
