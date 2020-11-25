@@ -1,6 +1,7 @@
 from unittest import TestCase
 from unittest.mock import patch
 
+from freezegun import freeze_time
 import requests
 
 from hamqth.clients import HamQTHClient, HamQTHClientError, HamQTHClientNotFoundError
@@ -64,6 +65,23 @@ class HamQTHClientAuthenticateTestCase(TestCase):
         mock_method.assert_called_once_with('https://www.hamqth.com/xml.php', payload={'u': 'bad-username', 'p': 'or-bad-password'})
 
 
+@freeze_time('2000-01-01')
+class HamQTHClientAuthenticateExpirationTestCase(TestCase):
+    def setUp(self):
+        self.client = HamQTHClient()
+        credentials = {'username': 'username', 'password': 'password'}
+        with patch.object(HamQTHClient, 'request', return_value=SessionIDRequestResponse()) as mock_method:
+            self.client.authenticate(**credentials)
+
+    def test_is_authenticated(self):
+        self.assertTrue(self.client.is_authenticated)
+
+    @freeze_time('2000-01-01', as_kwarg="frozen_time")
+    def test_authentication_expires(self, frozen_time):
+        frozen_time.tick(3601)
+        self.assertFalse(self.client.is_authenticated)
+
+
 class HamQTHClientRequestTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
@@ -106,11 +124,17 @@ class HamQTHClientRequestNotOkTestCase(TestCase):
         mock_method.assert_called_once_with('https://some-url.test/', params='foo=bar')
 
 
+@freeze_time('2000-01-01')
 class HamQTHClientAuthenticatedTestCase(TestCase):
     def setUp(self):
         self.client = HamQTHClient(session_id='abc123')
 
     def test_is_authenticated_is_true(self):
+        self.assertTrue(self.client.is_authenticated)
+
+    @freeze_time('2000-01-01', as_kwarg="frozen_time")
+    def test_is_authenticated_user_provided_token_doesnt_expire(self, frozen_time):
+        frozen_time.tick(3601)
         self.assertTrue(self.client.is_authenticated)
 
 
